@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "activerecord", ar_version
-  s.add_dependency 'activerecord-extended_support', version
+  s.add_dependency 'activerecord-database_schema', version
 
   s.add_development_dependency "mysql2"
 end
