@@ -7,13 +7,11 @@ module ActiveRecord
       extend ActiveSupport::Concern
       
       included do
-        puts "ActiveRecord::DatabaseSchema::Dumper included to #{self.name}!"
         alias_method_chain :table,  :extended_support
       end
       
       # Override de #table
       def table_with_extended_support(table, stream)
-        puts "ActiveRecord::DatabaseSchema::Dumper#table_with_extended_support(#{table}, #{stream})"
         columns = @connection.columns(table)
         
         begin

@@ -10,12 +10,10 @@ module ActiveRecord
         included do
           attr_accessor :comment
           alias_method_chain :to_sql, :comments
-          puts "ActiveRecord::DatabaseComments::Definition::Column included into #{self.name}"
         end
     
         # Override de #to_sql
         def to_sql_with_comments
-          puts "ActiveRecord::DatabaseComments::Definition::Column#to_sql_with_comments"
           
           column_sql = "#{base.quote_column_name(name)} #{sql_type}"
           column_options = {}

@@ -13,7 +13,6 @@ module ActiveRecord
         included do
           # Agregar en cadena el metodo column_with_unsigned:
           alias_method_chain :column, :unsigned
-          puts "ActiveRecord::DatabaseUnsignedColumns::Definitions::Table included into #{self.name}"
         end
         
         # Permite dentro de una migracion:
@@ -23,7 +22,6 @@ module ActiveRecord
         #   end
         # end
         def column_with_unsigned(name, type, options = {})
-          puts "ActiveRecord::DatabaseUnsignedColumns::Definitions::Table#column_with_unsigned(#{name}, #{type}, #{options.inspect})"
           ret_column = column_without_unsigned(name, type, options)
           ret_column[name].unsigned = options[:unsigned]
           ret_column

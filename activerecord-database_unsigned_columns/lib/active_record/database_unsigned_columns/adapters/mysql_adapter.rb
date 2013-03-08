@@ -18,12 +18,10 @@ module ActiveRecord
           
           # Incluir patch a self::Column:
           #"#{self.name}::Column".constantize.send :include, NumericTypeColumn::ActiveRecord::MysqlColumnPatch
-          puts "ActiveRecordDatabaseUnsignedColumns::Adapters::MysqlAdapter included into #{self.name}"
         end
     
 =begin
           def create_table_with_mysql_options(table_name, options = {}) #:nodoc:
-            puts "NumericTypeColumn::ActiveRecord::MysqlAdapterPatch: create_table(table_name: #{table_name}, options: #{options})"
             create_table_without_mysql_options(table_name, options.reverse_merge(options: options[:mysql_options] ? options[:mysql_options] : "ENGINE=InnoDB"))
           end
 =end
@@ -31,7 +29,6 @@ module ActiveRecord
           protected
         
         def add_column_sql_with_unsigned(table_name, column_name, type, options = {})
-          puts "ActiveRecordDatabaseUnsignedColumns::Adapters::MysqlAdapter#add_column_sql_with_unsigned(table_name: #{table_name}, column_name: #{column_name}, type: #{type}, options: #{options})"
           is_unsigned_valid = (((options.has_key? :unsigned) && (options[:unsigned] == true)) && (['integer', 'decimal', 'float', 'boolean'].include? type.to_s))
           add_column_sql = "ADD #{quote_column_name(column_name)} #{type_to_sql(type, options[:limit], options[:precision], options[:scale], is_unsigned_valid)}"
           add_column_options!(add_column_sql, options)
@@ -40,7 +37,6 @@ module ActiveRecord
         end
         
         def type_to_sql_with_unsigned(type, limit = nil, precision = nil, scale = nil, unsigned = false)
-          puts "ActiveRecordDatabaseUnsignedColumns::Adapters::MysqlAdapter#type_to_sql_with_unsigned(type: #{type}, limit: #{limit}, precision: #{precision}, scale: #{scale}, unsigned: #{unsigned})"
           sql = type_to_sql_without_unsigned(type, limit, precision, scale)
           sql << ' UNSIGNED' if unsigned && (['integer', 'decimal', 'float', 'boolean'].include? type.to_s)
           sql

@@ -12,12 +12,10 @@ module ActiveRecord
         included do
           attr_accessor :unsigned
           alias_method_chain :sql_type, :unsigned
-          puts "ActiveRecord::DatabaseUnsignedColumns::Definitions::Column included into #{self.name}"
         end
     
         # Override de #sql_type
         def sql_type_with_unsigned
-          puts "ActiveRecord::DatabaseUnsignedColumns::Definitions::Column#sql_type_with_unsigned"
           # Cambio: signature de call base.type_to_sql:
           if base.method(:type_to_sql).parameters.include?([:opt, :unsigned])
             base.type_to_sql(type.to_sym, limit, precision, scale, unsigned) rescue type
