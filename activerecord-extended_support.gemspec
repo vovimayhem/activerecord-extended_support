@@ -16,6 +16,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "activerecord", "~> 3.2.12"
   s.add_dependency "activesupport", "~> 3.2.12"
+  s.add_dependency 'activerecord-database_comments', ">=#{version}"
+  s.add_dependency 'activerecord-database_unsigned_columns', ">=#{version}"
+  s.add_dependency 'activerecord-database_schema', ">=#{version}"
 
   s.add_development_dependency "mysql2"
 end
