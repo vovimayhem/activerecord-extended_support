@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["roberto.quintanilla@gmail.com"]
   s.homepage    = "https://github.com/vovimayhem"
   s.summary     = "Support for unsigned integer columns in ActiveRecord migrations."
-  s.description = "Support for unsigned integer columns in ActiveRecord migrations."
+  s.description = "Support for unsigned integer columns in ActiveRecord migrations. Useful for keeping somewhat happy those squared, pesky DBA's."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 

@@ -13,13 +13,13 @@ Gem::Specification.new do |s|
   s.required_ruby_version     = '>= 1.8.7'
   s.required_rubygems_version = ">= 1.3.6"
 
-  s.author            = 'Roberto Quintanilla Gonzalez'
-  s.email             = 'roberto.quintanilla@gmail.com'
-  s.homepage          = 'https://github.com/vovimayhem'
+  s.author    = 'Roberto Quintanilla Gonzalez'
+  s.email     = 'roberto.quintanilla@gmail.com'
+  s.homepage  = 'https://github.com/vovimayhem'
   
   s.files = Dir["{lib}/**/*"] + ["README.md"]
 
-  s.add_dependency "activerecord", ar_version
+  s.add_dependency "activerecord",                            ar_version
   s.add_dependency 'activerecord-database_comments',          version
   s.add_dependency 'activerecord-database_unsigned_columns',  version
   s.add_dependency 'activerecord-database_schema',            version

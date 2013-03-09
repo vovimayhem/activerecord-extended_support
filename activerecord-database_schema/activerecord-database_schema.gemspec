@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["roberto.quintanilla@gmail.com"]
   s.homepage    = "https://github.com/vovimayhem"
   s.summary     = "Support for unsigned columns and comments in ActiveRecord Schema Dumps."
-  s.description = "Support for unsigned columns and comments in ActiveRecord Schema Dumps."
+  s.description = "Support for unsigned columns and comments in ActiveRecord Schema Dumps. Useful for those squared, pesky DBA's."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
