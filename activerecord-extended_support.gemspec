@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.email     = 'roberto.quintanilla@gmail.com'
   s.homepage  = 'https://github.com/vovimayhem'
   
-  s.files = Dir["{lib}/**/*"] + ["README.md"]
+  s.files     = ["README.rdoc"]
 
   s.add_dependency "activerecord",                            ar_version
   s.add_dependency 'activerecord-database_comments',          version
