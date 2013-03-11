@@ -18,16 +18,20 @@ module ActiveRecord
           ActiveRecord::ConnectionAdapters::TableDefinition.send  :include, ActiveRecord::DatabaseComments::Definitions::Table
           
           # Agregar el módulo a los adapters de BD:
-          require 'active_record/database_comments/adapters/mysql_adapter' 
-          [
-            "ActiveRecord::ConnectionAdapters::MysqlAdapter",
-            "ActiveRecord::ConnectionAdapters::Mysql2Adapter",
-            "ActiveRecord::ConnectionAdapters::Mysql2SpatialAdapter", # Adapter para rgeo-mysql
-            "ArJdbc::MySQL"                                           # Adapter para jRuby JDBC
-          ].each do |mysql_adapter_class|
-            adapter_class = mysql_adapter_class.safe_constantize
-            adapter_class.send :include, ActiveRecord::DatabaseComments::Adapters::MysqlAdapter if adapter_class.present?
-          end
+          jdbc_adapter = "ArJdbc::MySQL".safe_constantize
+          unless jdbc_adapter.present?
+            [
+              "ActiveRecord::ConnectionAdapters::MysqlAdapter",
+              "ActiveRecord::ConnectionAdapters::Mysql2Adapter",
+            ].each do |mysql_adapter_class|
+              adapter_class = mysql_adapter_class.safe_constantize
+              if adapter_class.present?
+                require 'active_record/database_comments/adapters/mysql_adapter'
+                adapter_class.send :include, ActiveRecord::DatabaseComments::Adapters::MysqlAdapter 
+              end
+            end
+          end 
+          
           
         end
       end

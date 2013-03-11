@@ -15,9 +15,6 @@ module ActiveRecord
           alias_method_chain :add_column_sql, :unsigned
           alias_method_chain :type_to_sql,    :unsigned
           # alias_method_chain :create_table,         :mysql_options
-          
-          # Incluir patch a self::Column:
-          #"#{self.name}::Column".constantize.send :include, NumericTypeColumn::ActiveRecord::MysqlColumnPatch
         end
     
 =begin
@@ -26,21 +23,21 @@ module ActiveRecord
           end
 =end
           
-          protected
+        protected
         
-        def add_column_sql_with_unsigned(table_name, column_name, type, options = {})
-          is_unsigned_valid = (((options.has_key? :unsigned) && (options[:unsigned] == true)) && (['integer', 'decimal', 'float', 'boolean'].include? type.to_s))
-          add_column_sql = "ADD #{quote_column_name(column_name)} #{type_to_sql(type, options[:limit], options[:precision], options[:scale], is_unsigned_valid)}"
-          add_column_options!(add_column_sql, options)
-          add_column_position!(add_column_sql, options)
-          add_column_sql
-        end
-        
-        def type_to_sql_with_unsigned(type, limit = nil, precision = nil, scale = nil, unsigned = false)
-          sql = type_to_sql_without_unsigned(type, limit, precision, scale)
-          sql << ' UNSIGNED' if unsigned && (['integer', 'decimal', 'float', 'boolean'].include? type.to_s)
-          sql
-        end
+          def add_column_sql_with_unsigned(table_name, column_name, type, options = {})
+            is_unsigned_valid = (((options.has_key? :unsigned) && (options[:unsigned] == true)) && (['integer', 'decimal', 'float', 'boolean'].include? type.to_s))
+            add_column_sql = "ADD #{quote_column_name(column_name)} #{type_to_sql(type, options[:limit], options[:precision], options[:scale], is_unsigned_valid)}"
+            add_column_options!(add_column_sql, options)
+            add_column_position!(add_column_sql, options)
+            add_column_sql
+          end
+          
+          def type_to_sql_with_unsigned(type, limit = nil, precision = nil, scale = nil, unsigned = false)
+            sql = type_to_sql_without_unsigned(type, limit, precision, scale)
+            sql << ' UNSIGNED' if unsigned && (['integer', 'decimal', 'float', 'boolean'].include? type.to_s)
+            sql
+          end
         
       end
       
