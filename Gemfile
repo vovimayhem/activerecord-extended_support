@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'activerecord'
+gem 'activerecord', path: '../rails/activerecord'
+gem 'erubis'
 
 group :doc do
   # The current sdoc cannot generate GitHub links due
@@ -18,10 +19,12 @@ platforms :ruby do
   gem 'yajl-ruby'
 
   # AR
-  gem 'sqlite3', '~> 1.3.5'
+  gem 'sqlite3'
 
   group :development do
-    gem 'mysql2', '>= 0.3.10'
+    gem 'mysql2'
+    gem 'byebug'
+    gem 'turn'
   end
 end
 

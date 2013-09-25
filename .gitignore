@@ -19,3 +19,9 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+
+.DS_Store
+Gemfile.lock
+.ruby-version
+debug.log
