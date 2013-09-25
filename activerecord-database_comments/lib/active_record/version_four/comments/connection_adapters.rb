@@ -49,7 +49,7 @@ module ActiveRecord
           end
 
           def column_spec_with_comment(column, types)
-            byebug if column.name =~ /name/i
+            
             # By default, it's ActiveRecord::ConnectionAdapters::ColumnDumper#column_spec
             spec = column_spec_without_comment(column, types)
             
@@ -68,7 +68,6 @@ module ActiveRecord
             sql = "SHOW FULL FIELDS FROM #{quote_table_name(table_name)}"
             execute_and_free(sql, 'SCHEMA') do |result|
               each_hash(result).map do |field|
-                #byebug if table_name =~ /test_table/i and field[:Field] =~ /name/i
                 field_name = set_field_encoding(field[:Field])
                 new_column(field_name, field[:Default], field[:Type], field[:Null] == "YES", field[:Collation], field[:Extra], field[:Comment])
               end
