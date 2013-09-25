@@ -1,16 +1,16 @@
 ActiveSupport.on_load(:active_record) do
   
-  require 'active_record/version_four/connection_adapters'
+  require 'active_record/version_four/unsigned_columns/connection_adapters'
 
   # Agregar el modulo para soportar definiciones de columnas unsigned:
-  ActiveRecord::ConnectionAdapters::ColumnDefinition.send :include, ActiveRecord::VersionFour::ConnectionAdapters::ColumnDefinition
+  ActiveRecord::ConnectionAdapters::ColumnDefinition.send :include, ActiveRecord::VersionFour::UnsignedColumns::ConnectionAdapters::ColumnDefinition
   
   # Agregar el modulo para soportar definiciones de tablas con columnas unsigned:
-  ActiveRecord::ConnectionAdapters::TableDefinition.send  :include, ActiveRecord::VersionFour::ConnectionAdapters::TableDefinition
+  ActiveRecord::ConnectionAdapters::TableDefinition.send  :include, ActiveRecord::VersionFour::UnsignedColumns::ConnectionAdapters::TableDefinition
 
   #######
   require 'active_record/connection_adapters/abstract_mysql_adapter'
-  ActiveRecord::ConnectionAdapters::AbstractMysqlAdapter.send  :include, ActiveRecord::VersionFour::ConnectionAdapters::AbstractMysqlAdapter
+  ActiveRecord::ConnectionAdapters::AbstractMysqlAdapter.send  :include, ActiveRecord::VersionFour::UnsignedColumns::ConnectionAdapters::AbstractMysqlAdapter
   
   # # Agregar modulo a los adapters de BD:
   # [

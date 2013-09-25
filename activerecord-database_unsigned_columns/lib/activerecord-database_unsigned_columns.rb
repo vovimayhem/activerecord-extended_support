@@ -13,7 +13,7 @@ if defined?(::Rails::Railtie)
       class Railtie < ::Rails::Railtie #:nodoc:
 
         initializer 'active_record.extended_support.database_unsigned_columns' do |app|
-          load 'active_record/version_four/loader.rb'
+          load 'active_record/version_four/unsigned_columns/loader.rb'
         end
 
       end
@@ -22,8 +22,9 @@ if defined?(::Rails::Railtie)
   end
 
 else
-	load 'active_record/version_four/loader.rb'
+	load 'active_record/version_four/unsigned_columns/loader.rb'
   # ActiveSupport.on_load :active_record do
   #   require 'activerecord-mysql-unsigned/base'
   # end
 end
+
