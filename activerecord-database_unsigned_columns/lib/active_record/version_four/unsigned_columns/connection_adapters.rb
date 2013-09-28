@@ -40,10 +40,13 @@ module ActiveRecord
             alias_method_chain :add_column_options!,  :unsigned
             alias_method_chain :column_spec,          :unsigned
             alias_method_chain :migration_keys,       :unsigned
+            
+            # Cambiar el SQL de los ID's:
+            self::NATIVE_DATABASE_TYPES[:primary_key] = "int(11) unsigned DEFAULT NULL auto_increment PRIMARY KEY"
           end
 
           def add_column_options_with_unsigned!(sql, options) #:nodoc:
-            sql << " UNSIGNED" if options[:column].respond_to? :unsigned and options[:column].unsigned
+            sql << " unsigned" if options[:column].respond_to? :unsigned and options[:column].unsigned
             add_column_options_without_unsigned!(sql, options)
           end
 
